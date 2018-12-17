@@ -3,11 +3,10 @@ const stripe = require('stripe')(functions.config().stripe.token)
 const cors = require('cors')({ origin: true });
 exports.paystripe = functions.https.onRequest((req, res) => {
     cors(req, res, () => {
-        const thisReqMethod = req.method
+        const reqMethod = req.method
+        let message = 'Make a payment with Stripe!'
 
-        let exampleMessage = 'Make a payment with Stripe!'
-
-        if (thisReqMethod === 'POST') {
+        if (reqMethod === 'POST') {
             let token = req.body.token
             let amount = req.body.amount
 
@@ -22,7 +21,7 @@ exports.paystripe = functions.https.onRequest((req, res) => {
                 res.status(200).send('There was an error.');
             });
         } else {
-            res.status(200).send(exampleMessage);
+            res.status(200).send(message);
         }
     });
 });
