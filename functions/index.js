@@ -4,7 +4,7 @@ const cors = require('cors')({ origin: true });
 exports.paystripe = functions.https.onRequest((req, res) => {
     cors(req, res, () => {
         const reqMethod = req.method
-        let message = 'Make a payment with Stripe!'
+        const message = 'Make a payment with Stripe!'
 
         if (reqMethod === 'POST') {
             let token = req.body.token
